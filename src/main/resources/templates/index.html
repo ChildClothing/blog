@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--
+    浏览器渲染方式
+        IE：采用当前IE浏览器最高版本进行渲染
+        chrome：如果客户端安装并启用了谷歌，打开IE浏览器时会以谷歌内核渲染
+    -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Index</title>
+    <meta name="description" content="">
+    <!--
+    响应式web设计，自动适应屏幕大小
+    属性：
+        width：device-width 为设备的宽度（单位为缩放为 100% 时的 CSS 的像素）
+        initial-scale：初始缩放比例，也即是当页面第一次 load 的时候缩放比例
+        maximum-scale：允许用户缩放到的最大比例
+        minimum-scale：允许用户缩放到的最小比例
+        user-scalable：用户是否可以手动缩放
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/main/fontAwesome.css">
+    <link rel="stylesheet" href="/css/main/light-box.css">
+    <link rel="stylesheet" href="/css/main/owl-carousel.css">
+    <link rel="stylesheet" href="/css/main/templatemo-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <!-- TimeAxis -->
+    <link rel="stylesheet" href="/css/TimeAxis/slicknav.min.css">
+    <link rel="stylesheet" href="/css/TimeAxis/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/TimeAxis/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/TimeAxis/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/TimeAxis/animate.min.css">
+    <link rel="stylesheet" href="/css/TimeAxis/magnific-popup.css">
+
+    <!-- Xman CSS -->
+    <link rel="stylesheet" href="/css/TimeAxis/normalize.css">
+    <link rel="stylesheet" href="/css/TimeAxis/style.css">
+    <link rel="stylesheet" href="/css/TimeAxis/responsive.css">
+
+    <link href="/button/buttons.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<!-- 菜单栏头部 -->
+<header class="nav-down responsive-nav hidden-lg hidden-md">
+    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div id="main-nav" class="collapse navbar-collapse">
+        <nav>
+            <ul class="nav navbar-nav">
+                <li><a href="#top">Menu</a></li>
+                <li><a href="#featured">日记</a></li>
+                <li><a href="#projects">技术</a></li>
+                <li><a href="#video">软件</a></li>
+                <li><a href="#blog">杂记</a></li>
+                <li><a href="#contact">待补充</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- 左侧菜单显示 -->
+<div class="sidebar-navigation hidde-sm hidden-xs">
+    <div id="menu_logo" v-bind:style="logo.logoStyle" v-on:click="personIntroduce" @mouseover="personMouseover" @mouseout="personMouseout">
+        <img v-bind:src="img.src"  id="logo"  v-bind:style="img.style">
+        <div v-bind:style="div.divStyle">
+            <span v-bind:style="span.spanStyle">{{span.value}}</span>
+        </div>
+    </div>
+    <div style="position: absolute;padding-top: 70%;display: inline-block;text-align: center;width: 100%;z-index: 1">
+        <span style="text-transform:capitalize;color: #eee;text-decoration: none!important;">石立晨</span>
+        <span style="text-transform:capitalize;color: #83beff;text-decoration: none!important;">&nbsp;&nbsp;&nbsp;个人博客</span>
+    </div>
+    <nav id="home_menu">
+        <ul>
+            <li>
+                <a href="#featured">
+                    <span class="rect"></span>
+                    <span class="circle"></span>
+                    日记
+                </a>
+            </li>
+
+            <li>
+                <a href="#video">
+                    <span class="rect"></span>
+                    <span class="circle"></span>
+                    软件
+                </a>
+            </li>
+            <li>
+                <a href="#contact">
+                    <span class="rect"></span>
+                    <span class="circle"></span>
+                    博客
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="social-icons">
+        <!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+        <li><a href="#"><i class="fa fa-behance"></i></a></li>-->
+    </ul>
+</div>
+<div class="page-content">
+    <section id="featured" class="content-section">
+        <div class="section-heading">
+            <div style="display: inline-block;padding-top: 5px;">
+                <h1>朝花<br><em>夕拾</em></h1>
+            </div>
+            <div style="display: inline-block;">
+                <p>
+                <div style="font-size: 16px"><i>不积跬步，无以至千里；不积小流，无以成江海。&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</i>
+                </div>
+                <p>
+                <div style="padding-top: 10px" align="right"><i>—— 荀子</i></div>
+            </div>
+        </div>
+        <div class="story section">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <div class="story-content" id="timeOfBlog" >
+                        <single-time-blog v-for="blog in blogs" v-bind:open-blog="openSingleBlog" v-bind:blog="blog" v-bind:key="blog.id" v-bind:style-object="styleOfTime"></single-time-blog>
+                    </div>
+                    <a href="/blog/skip/all" target="_blank"><div style="font-size: 20px">more>></div></a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="video" class="content-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h1>常用 <em>软件</em> </h1>
+                    <p>一些常用的开发软件和一些好用的软件分享</p>
+                </div>
+                <div class="text-content">
+                    <p></p>
+                </div>
+                <!--<div class="button button-raised button-primary button-pill">
+                    <a href="#blog">more>></a>
+                </div>-->
+            </div>
+            <div class="col-md-12">
+                <div class="box-video">
+                    <a href="http://www.jetbrains.com/" target="_blank"><div style="height: 100%;width: 33%;display: inline-block">
+                        <div >
+                            <img src="img/software/idea.ico" style="width: 60%">
+                        </div>
+                        <div style="margin-top: 10%">
+                            <span style="height: 20%">idea</span>
+                        </div>
+                    </div></a>
+                    <a href="https://www.getpostman.com/" target="_blank"><div style="height: 100%;width: 33%;display: inline-block">
+                        <div >
+                            <img src="img/software/postman.jpg" style="width: 60%">
+                        </div>
+                        <div style="margin-top: 10%">
+                            <span style="height: 20%">Postman</span>
+                        </div>
+                    </div></a>
+                    <a href="https://www.vandyke.com/products/securecrt/" target="_blank"><div style="height: 100%;width: 33%;display: inline-block">
+                        <div >
+                            <img src="img/software/crt.jpg" style="width: 60%">
+                        </div>
+                        <div style="margin-top: 10%">
+                            <span style="height: 20%">SecureCRT</span>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="content-section">
+        <div id="map">
+
+            <!-- How to change your own map point
+                   1. Go to Google Maps
+                   2. Click on your location point
+                   3. Click "Share" and choose "Embed map" tab
+                   4. Copy only URL and paste it within the src="" field below
+            -->
+        </div>
+        <div id="contact-content">
+            <div class="section-heading">
+                <h1>博客<br><em>随笔</em></h1>
+                <p>水滴石穿
+                    <br></p>
+
+            </div>
+            <div class="section-content">
+                <form id="contact" method="post">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input name="blogName" type="text" class="form-control" id="blogName" placeholder="Your Blog Name..."
+                                   required="">
+                        </div>
+                        <div class="col-md-4">
+                            <select id="blogTypeSelect"  class="form-control" style="background-color: #f4f4f4;border: 1px solid #eee">
+                                <option value="" >请选择博客类型</option>
+                                <option value="1" >SE</option>
+                                <option value="2" >线程</option>
+                                <option value="3" >IO</option>
+                                <option value="4" >反射</option>
+                                <option value="5" >SSM</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea name="blogIntroduce" rows="6" class="form-control" id="blogIntroduce"
+                                      placeholder="Blog Introduce..." required></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <button id="blogSubmit" class="button button-glow button-border button-rounded button-primary" @click.prevent="openMdEdit">编辑</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <p>Copyright &copy; 2018 Company Name . Design: <a href="" target="_blank">Sentra</a> More Templates <a
+                href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a
+                href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+    </section>
+</div>
+
+
+<script src="/jQuery/jquery-3.3.1.min.js"></script>
+<script>window.jQuery || document.write('<script src="/jQuery/jquery-3.3.1.min.js"><\/script>')</script>
+
+<script src="/js/vendor/bootstrap.min.js"></script>
+
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js"></script>
+<script src="/vue/vue.js"></script>
+<script src="/vue/anios/axios.min.js"></script>
+<script src="/vue/vue-router/vue-router.min.js"></script>
+<script src="/layer/layer.js"></script>
+
+
+<script>
+    //时间轴博客展示组件
+    Vue.component('singleTimeBlog',{
+        props:['blog','styleObject','openBlog'],
+        template:
+        '                        <div class="single-story" >\n' +
+        '                            <span class="year wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.4s">{{blog.blogCreateDate}}</span>\n' +
+        '                            <div class="inner-content wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">\n' +
+        '                                <h3 v-bind:style="styleObject" v-on:click="openBlog(blog.id)">{{blog.blogName}}</h3>\n' +
+        '                                <p>{{blog.blogType}}</p>\n' +
+        '                                <p class="p2">{{blog.blogIntroduce}}</p>\n' +
+        '                            </div>\n' +
+        '                        </div>'
+    })
+    //页面时间轴展示部分
+    var threeBlog = new Vue({
+        el: "#timeOfBlog",
+        data: {
+            blogs:[
+                {date:"2019-02-18",title:"第一个",type:"SSM",introduce:"第一个博客的简介"},
+                {date:"2019-01-11",title:"第二个",type:"反射",introduce:"第二个博客的简介"},
+                {date:"2018-12-12",title:"第三个",type:"Java",introduce:"第三个博客的简介"},
+            ],
+            styleOfTime:{
+                cursor:"pointer"
+            }
+        },
+        created:function(){
+            axios.get("/blog/three").then(function(response){
+                threeBlog.blogs = response.data;
+            });
+        },
+        methods:{
+            openSingleBlog:function (id) {
+                //console.info(id);
+                window.open("/blog/detail?id="+id);
+            }
+        }
+    });
+
+    //左上角logo
+    var logo = new Vue({
+        el:"#menu_logo",
+        data:{
+            span:{
+                value:'个人简历',
+                spanStyle:{
+                    width:'100%',
+                    display: 'inline-block',
+                    height: '1em',
+                    position:"relative",
+                    top:'47%',
+                    marginTop:'-1em',
+                    zIndex:1,
+                    display: 'inline-block',
+                    color:'#83beff',
+                },
+            },
+            div:{
+                divStyle:{
+                    zIndex:2,
+                    textAlign:'center',
+                    height: '',
+                },
+            },
+            logo:{
+                logoStyle:{
+                    position: 'absolute',
+                    width: '60%',
+                    marginLeft: '20%',
+                    marginTop: '10%',
+                    display: 'block',
+                    zIndex: 2,
+                },
+            },
+            img:{
+                src:'img/my/logo.jpg',
+                style:{
+                    opacity:'1',
+                    zIndex:3,
+                }
+            }
+        },
+        mounted:function(){
+            let width = $("#logo").width()+10;
+            this.span.spanStyle.marginTop=width/2;
+            this.div.divStyle.height=width+'px';
+        },
+        methods:{
+            personMouseover:function () {
+                this.span.spanStyle.zIndex=4;
+                this.img.style.opacity=0.3;
+            },
+            personMouseout:function () {
+                this.span.spanStyle.zIndex=1;
+                this.img.style.opacity=1;
+            },
+            personIntroduce:function () {
+                window.open('/pdf/personal');
+            }
+        }
+    });
+
+
+</script>
+
+<script>
+    //编辑博客时弹出具体的编写页面
+    var openMd = new Vue({
+        el: "#blogSubmit",
+        data: {
+            name:"编辑文章"
+        },
+        methods:{
+            openMdEdit:function () {
+                var index = layer.open({
+                    type: 2,
+                    title: " ",
+                    shade: [0],
+                    area: ['1366px', '700px'],
+                    anim: 1,
+                    content: ['/mdeditor'], //iframe的url，no代表不显示滚动条
+                    maxmin: true
+                });
+                layer.full(index);
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

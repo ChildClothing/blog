@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.slc.blog.mapper.BlogMapper">
+    <!-- 插入博客相关数据 -->
+    <insert id="insertBlog" parameterType="com.slc.blog.entity.Blog">
+      insert into myblog(blogName, blogType, blogIntroduce, blogContent, blogCreateDate, blogStatus, blogPath)
+      values (#{blog.blogName},#{blog.blogType},#{blog.blogIntroduce},#{blog.blogContent},#{blog.blogCreateDate},#{blog.blogStatus},#{blog.blogPath})
+    </insert>
+
+    <!-- 查询三条最新的博客数据 -->
+    <select id="selectTimeOfBlog" resultType="com.slc.blog.entity.Blog">
+        select id,blogName,blogType,blogIntroduce,blogCreateDate from myblog order by blogCreateDate desc limit 0,3
+    </select>
+
+    <!-- 根据博客的id查询一条数据 -->
+    <select id="selectBlogById" parameterType="java.lang.Integer" resultType="com.slc.blog.entity.Blog">
+        select id,blogName,blogType,blogIntroduce,blogCreateDate,blogContent from myblog where id = #{id}
+    </select>
+
+    <select id="selectAllBlog" resultType="com.slc.blog.entity.Blog">
+        select id,blogName,blogType,blogIntroduce,blogCreateDate from myblog order by blogCreateDate desc
+    </select>
+
+</mapper>

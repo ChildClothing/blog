@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlogContent</title>
+    <link href="/MdEditor/css/editormd.css" rel="stylesheet" type="text/css">
+    <link href="/button/buttons.css" rel="stylesheet" type="text/css">
+    <script src="/jQuery/jquery-3.3.1.js"></script>
+    <script src="/MdEditor/editormd.min.js"></script>
+    <script src="/vue/vue.js"></script>
+    <script src="/layer/layer.js"></script>
+    <script src="/vue/anios/axios.min.js"></script>
+    <script>
+        //MdEdit 编辑器
+        var testEditor;
+
+        testEditor=$(function() {
+            editormd("editormd", {
+                width   : "100%",
+                height  : 610,
+                //markdown : md,
+                codeFold : true,
+                syncScrolling : "single",
+                //你的lib目录的路径
+                path    : "/MdEditor/lib/",
+                imageUpload: false,//关闭图片上传功能
+                /*  theme: "dark",//工具栏主题
+                 previewTheme: "dark",//预览主题
+                 editorTheme: "pastel-on-dark",//编辑主题 */
+                emoji: false,
+                taskList: true,
+                tocm: true,         // Using [TOCM]
+                tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+                flowChart: true,             // 开启流程图支持，默认关闭
+                sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+                //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+                saveHTMLToTextarea : true
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<!-- editormd start -->
+<div class="editormd" id="editormd">
+    <textarea class="editormd-markdown-textarea" name="editormd-markdown-doc" id="editormd"></textarea>
+    <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+    <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
+    <textarea class="editormd-html-textarea" name="editorhtml" id="editorhtml"></textarea>
+</div>
+
+<div style="text-align: center">
+    <button id="sub" :class="classObject" @click="insert">提交</button>
+</div>
+<!-- editormd end -->
+
+</body>
+
+<script>
+    var subButton = new Vue({
+        el: "#sub",
+        data: {
+            //按钮css样式，button插件
+            classObject: {
+                'button':true,
+                'button-glow':true,
+                'button-rounded':true,
+                'button-rounded':true,
+                'button-primary':true
+            }
+        },
+        methods:{
+            //
+            //提交方法
+            insert:function () {
+                var blogName = $("#blogName",parent.document).val();
+                var blogType = $("#blogTypeSelect option:selected",parent.document).val();
+                //var blogType = $("#blogTypeSelect").val();
+                var blogIntroduce = $("#blogIntroduce",parent.document).val();
+                //alert("name:"+blogName+"\ntype:"+blogType+"\nintroduce:"+blogIntroduce);
+                var blogContent = $("#editorhtml").val();
+                //console.info(blogContent);
+
+                //发送请求存储博客
+                $.ajax({
+                    url:"/blog/add",
+                    type:"post",
+                    data:{
+                        "blogName":blogName,
+                        "blogType":blogType,
+                        "blogIntroduce":blogIntroduce,
+                        "blogContent":blogContent,
+                    },
+                    success:function (data) {
+                        if(data){
+                            //刷新父页面
+                            //parent.location.reload();
+                            parent.layer.msg('提交成功！');
+                            //关闭当前窗口
+                            let index = window.name;
+                            index = index.replace("layui-layer-iframe","");
+                            parent.layer.close(index);
+                        }else{
+                            layer.msg('您未获得此权限！');
+                        }
+                    },
+                    error:function (e) {
+
+                    }
+                });
+
+
+            }
+        }
+    })
+</script>
+
+</html>

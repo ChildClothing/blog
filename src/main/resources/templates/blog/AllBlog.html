@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main/fontAwesome.css">
+
+<!-- Xman CSS -->
+<link rel="stylesheet" href="/css/TimeAxis/normalize.css">
+<link rel="stylesheet" href="/css/TimeAxis/style.css">
+<body>
+<div class="page-content">
+    <div style="overflow: scroll; overflow-x: hidden; overflow-y: hidden;" >
+        <div class="story section">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <div class="story-content" id="timeOfBlog">
+                        <single-time-blog v-for="blog in blogs" v-bind:open-blog="openSingleBlog" v-bind:blog="blog"
+                                          v-bind:key="blog.id" v-bind:style-object="styleOfTime"></single-time-blog>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+<script src="/jQuery/jquery-3.3.1.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js"></script>
+<script src="/vue/vue.js"></script>
+<script src="/vue/anios/axios.min.js"></script>
+<script src="/vue/vue-router/vue-router.min.js"></script>
+<script src="/layer/layer.js"></script>
+<script>
+    Vue.component('singleTimeBlog', {
+        props: ['blog', 'styleObject', 'openBlog'],
+        template:
+            '                        <div class="single-story" >\n' +
+            '                            <span class="year wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.4s">{{blog.blogCreateDate}}</span>\n' +
+            '                            <div class="inner-content wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">\n' +
+            '                                <h3 v-bind:style="styleObject" v-on:click="openBlog(blog.id)">{{blog.blogName}}</h3>\n' +
+            '                                <p>{{blog.blogType}}</p>\n' +
+            '                                <p class="p2">{{blog.blogIntroduce}}</p>\n' +
+            '                            </div>\n' +
+            '                        </div>'
+    })
+    var allBlog = new Vue({
+        el: "#timeOfBlog",
+        data: {
+            blogs: [
+                {date: "2019-02-18", title: "第一个", type: "SSM", introduce: "第一个博客的简介"},
+                {date: "2019-01-11", title: "第二个", type: "反射", introduce: "第二个博客的简介"},
+                {date: "2018-12-12", title: "第三个", type: "Java", introduce: "第三个博客的简介"},
+            ],
+            styleOfTime: {
+                cursor: "pointer"
+            }
+        },
+        mounted: function () {
+            axios.get("/blog/all").then(function (response) {
+                console.info(response.data);
+                allBlog.blogs = response.data;
+            });
+        },
+        methods: {
+            openSingleBlog: function (id) {
+                //console.info(id);
+                window.open("/blog/detail?id=" + id);
+            }
+        }
+    });
+</script>
+</html>

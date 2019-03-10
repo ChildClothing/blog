@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="/button/buttons.css" rel="stylesheet" type="text/css">
+    <script src="/jQuery/jquery-3.3.1.js"></script>
+    <script src="/vue/vue.js"></script>
+    <script src="/vue/anios/axios.min.js"></script>
+    <script src="/vue/vue-router/vue-router.min.js"></script>
+</head>
+<body>
+
+<div id="singleBlog">
+
+    <div>
+        <h3>{{blog.blogName}}</h3>
+    </div>
+    <div>
+        <span>{{blog.blogCreateDate}}</span>
+    </div>
+    <div>
+        <span><p>
+            {{blog.blogIntroduce}}
+        </p></span>
+    </div>
+    <div>
+        <span v-html="blog.blogContent">
+        </span>
+    </div>
+</div>
+
+</body>
+
+<script>
+    $.extend({
+        getUrlVars: function() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        },
+        getUrlVar: function(name) {
+            return $.getUrlVars()[name];
+        }
+    });
+</script>
+
+<script>
+
+    var vm = new Vue({
+        el:"#singleBlog",
+        created:function () {
+            let id = $.getUrlVar('id');
+            axios.get("/blog/id",{
+                params:{
+                    id:id
+                }
+            }).then( (response) => {
+                //console.info(response.data);
+                //vm.data=response.data;
+                this.blog = response.data;
+                //console.info(this.data);
+            });
+            //axios.get("/blog/id",);
+        },
+        data:{
+            blog:{
+                blogName:"",
+                blogCreateDate:"",
+                blogIntroduce:"",
+                blogContent:""
+            }
+        }
+    })
+</script>
+
+</html>

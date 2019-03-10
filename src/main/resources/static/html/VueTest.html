@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>{{ message }}</p>
+</div>
+
+<div id="app2">
+    <span v-bind:title="message">
+        鼠标悬停提示
+    </span>
+</div>
+
+<div id="app3">
+    <p v-if="a">可以看见了</p>
+</div>
+
+<div id="app4">
+    <ol>
+        <li v-for="apple in apples">
+            {{apple.text}}
+        </li>
+    </ol>
+</div>
+
+<div id="app5">
+    <p>{{message}}</p>
+    <button v-on:click="recverseMessage" >逆转消息</button>
+</div>
+
+<div id="app6">
+    <p>{{message}}</p>
+    <input v-model="message">
+</div>
+
+<div id="app7">
+    <ul>
+        <ul-li v-for="todo in list" v-bind:li="todo" v-bind:key="todo.id"></ul-li>
+    </ul>
+</div>
+
+
+<div id="app8">
+    <p>{{ foo }}</p>
+    <!-- 这里的 `foo` 不会更新！ -->
+    <button v-on:click="foo = 'baz'">Change it</button>
+</div>
+
+<script>
+
+    var obj = {
+        foo: 'bar'
+    }
+
+    Object.freeze(obj)
+
+    new Vue({
+        el: '#app8',
+        data: obj
+    })
+
+    //Vue实例
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!'
+        }
+    });
+
+    //鼠标悬停，v-bind 绑定title
+    var app2 = new Vue({
+        el:"#app2",
+        data:{
+            message:"页面加载于"+new Date().toLocaleString()
+        }
+    });
+
+    //v-if 是否可见
+    var app3 = new Vue({
+        el:"#app3",
+        data:{
+            a:false
+        }
+    });
+
+    //v-for循环
+    var app4 = new Vue({
+        el:"#app4",
+        data:{
+            apples: [
+                {text: "红富士"},
+                {text: "绿富士"},
+                {text: "紫富士"}
+            ]
+        }
+    });
+
+    //方法，字符串倒序
+    var app5 = new Vue({
+        el:"#app5",
+        data:{
+            message:"Hello Vue.js"
+        },
+        methods:{
+            recverseMessage:function () {
+                this.message = this.message.split("").reverse().join("");
+            }
+        }
+    })
+
+    //双向绑定
+    var app6 = new Vue({
+        el:"#app6",
+        data:{
+            message:"Hello Vue.js!"
+        }
+    });
+
+    //组件，循环
+    Vue.component("ul-li",{
+        props:["li"],
+        template:"<li>{{li.text}}</li>"
+    });
+    var app7 = new Vue({
+       el:"#app7",
+       data:{
+           list:[
+               {id:0,text:"lol"},
+               {id:1,text:"ff14"},
+               {id:2,text:"wow"}
+           ]
+       }
+    })
+</script>
+</body>
+</html>
